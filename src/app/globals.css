@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 20% 98%;
+    --foreground: 215 28% 14%;
+    --card: 0 0% 100%;
+    --card-foreground: 215 28% 14%;
+    --muted: 214 20% 94%;
+    --muted-foreground: 215 14% 38%;
+    --border: 214 18% 87%;
+    --input: 214 18% 80%;
+    --ring: 222 60% 45%;
+    --primary: 218 38% 20%;
+    --primary-foreground: 210 30% 98%;
+    --destructive: 0 68% 42%;
+    --destructive-foreground: 0 0% 100%;
+    --received: 164 70% 24%;
+    --given: 262 48% 42%;
+    --warning: 32 90% 30%;
+    color-scheme: light;
+  }
+  .dark {
+    --background: 216 24% 9%;
+    --foreground: 210 20% 94%;
+    --card: 216 22% 12%;
+    --card-foreground: 210 20% 94%;
+    --muted: 216 18% 17%;
+    --muted-foreground: 214 14% 70%;
+    --border: 216 16% 22%;
+    --input: 216 14% 30%;
+    --ring: 214 80% 68%;
+    --primary: 210 30% 92%;
+    --primary-foreground: 216 28% 12%;
+    --destructive: 0 80% 68%;
+    --destructive-foreground: 216 28% 10%;
+    --received: 164 55% 62%;
+    --given: 262 80% 80%;
+    --warning: 38 92% 66%;
+    color-scheme: dark;
+  }
+  * { @apply border-border; }
+  body { @apply bg-background text-foreground antialiased; font-feature-settings: "tnum" 0; }
+  :focus-visible { @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background; }
+  dialog::backdrop { background: hsl(216 30% 6% / 0.55); }
+}
+
+@layer components {
+  .money { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  /* Alternating rows: contrast verified in both themes (muted/55 over background/card). */
+  .zebra tbody tr:nth-child(even) { background-color: hsl(var(--muted) / 0.55); }
+  .zebra tbody tr { transition: background-color 120ms; }
+  .zebra tbody tr:hover { background-color: hsl(var(--muted)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
